@@ -1,0 +1,25 @@
+from datetime import date
+
+def calculate_age(birthdate):
+    today = date.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return age
+
+def validate_login():
+    name = input("Enter your name: ")
+    birthdate_str = input("Enter your birthdate (YYYY-MM-DD): ")
+
+    try:
+        birthdate = date.fromisoformat(birthdate_str)
+        age = calculate_age(birthdate)
+
+        if age >= 18:
+            print(f"Welcome, {name}!")
+        else:
+            print("Sorry, you must be at least 18 years old to login.")
+
+    except ValueError:
+        print("Invalid date format. Please use YYYY-MM-DD.")
+
+if __name__ == "__main__":
+    validate_login()
